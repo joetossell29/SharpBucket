@@ -116,10 +116,10 @@ namespace SharpBucket.V2.EndPoints
             return new PullRequestsResource(accountName, repository, this);
         }
 
-        internal List<PullRequest> ListPullRequests(string accountName, string repository, int max)
+        internal List<PullRequest> ListPullRequests(string accountName, string repository, int max, IDictionary<string, object> requestParameters = null)
         {
             var overrideUrl = GetRepositoryUrl(accountName, repository, "pullrequests/");
-            return GetPaginatedValues<PullRequest>(overrideUrl, max);
+            return GetPaginatedValues<PullRequest>(overrideUrl, max, requestParameters);
         }
 
         internal PullRequest PostPullRequest(string accountName, string repository, PullRequest pullRequest)
@@ -258,14 +258,14 @@ namespace SharpBucket.V2.EndPoints
 
         #region Commits Resource
 
-        internal List<Commit> ListCommits(string accountName, string repository, string branchortag = null, int max = 0)
+        internal List<Commit> ListCommits(string accountName, string repository, string branchortag = null, int max = 0, IDictionary<string, object> requestParameters = null)
         {
             var overrideUrl = GetRepositoryUrl(accountName, repository, "commits/");
             if (!string.IsNullOrEmpty(branchortag))
             {
                 overrideUrl += branchortag;
             }
-            return GetPaginatedValues<Commit>(overrideUrl, max);
+            return GetPaginatedValues<Commit>(overrideUrl, max, requestParameters);
         }
 
         internal Commit GetCommit(string accountName, string repository, string revision)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using SharpBucket.V2.Pocos;
 
 namespace SharpBucket.V2.EndPoints
@@ -178,9 +179,9 @@ namespace SharpBucket.V2.EndPoints
         /// <param name="branchortag">The branch or tag to get, for example, master or default.</param>
         /// <param name="max">Values greater than 0 will set a maximum number of records to return. 0 or less returns all.</param>
         /// <returns></returns>
-        public List<Commit> ListCommits(string branchortag = null, int max = 0)
+        public List<Commit> ListCommits(string branchortag = null, int max = 0, IDictionary<string, object> requestParameters = null)
         {
-            return _repositoriesEndPoint.ListCommits(_accountName, _repository, branchortag, max);
+            return _repositoriesEndPoint.ListCommits(_accountName, _repository, branchortag, max, requestParameters);
         }
 
         /// <summary>

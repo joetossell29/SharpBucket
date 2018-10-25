@@ -27,9 +27,9 @@ namespace SharpBucket.V2.EndPoints
         /// List all of a repository's open pull requests.
         /// </summary>
         /// <returns></returns>
-        public List<PullRequest> ListPullRequests(int max = 100)
+        public List<PullRequest> ListPullRequests(int max = 100, IDictionary<string, object> requestParameters = null)
         {
-            return _repositoriesEndPoint.ListPullRequests(_accountName, _repository, max);
+            return _repositoriesEndPoint.ListPullRequests(_accountName, _repository, max, requestParameters);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace SharpBucket.V2.EndPoints
             return _repositoriesEndPoint.GetPullRequest(_accountName, _repository, pullRequestId);
         }
 
-        internal object ListPullRequestCommits(int pullRequestId)
+        internal List<Commit> ListPullRequestCommits(int pullRequestId)
         {
             return _repositoriesEndPoint.ListPullRequestCommits(_accountName, _repository, pullRequestId);
         }

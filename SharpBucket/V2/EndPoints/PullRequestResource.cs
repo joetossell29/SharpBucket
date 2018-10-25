@@ -1,4 +1,7 @@
-﻿namespace SharpBucket.V2.EndPoints
+﻿using System.Collections.Generic;
+using SharpBucket.V2.Pocos;
+
+namespace SharpBucket.V2.EndPoints
 {
     /// <summary>
     /// A "Virtual" resource that offers easier manipulation of the pull request.
@@ -31,7 +34,7 @@
         /// List of the commits associated with a specific pull request, follow the pull request's commits link. This returns a paginated response.
         /// </summary>
         /// <returns></returns>
-        public object ListPullRequestCommits()
+        public List<Commit> ListPullRequestCommits()
         {
             return _repositoriesEndPoint.ListPullRequestCommits(_accountName, _repository, _pullRequestId);
         }
@@ -69,7 +72,7 @@
         /// Gets a log of the activity for a specific pull request.
         /// </summary>
         /// <returns></returns>
-        public object GetPullRequestActivity()
+        public List<Activity> GetPullRequestActivity()
         {
             return _repositoriesEndPoint.GetPullRequestActivity(_accountName, _repository, _pullRequestId);
         }
